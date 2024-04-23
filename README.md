@@ -13,9 +13,29 @@ This project aims to analyze the sentiment of news articles related to the Russi
 
 The project utilizes the [NewsCatcher API](https://newscatcherapi.com/) to collect news articles from reputable sources in the target countries. The data collection process involves:
 
-1. Identifying relevant news sources for each country, covering a diverse range of perspectives and ideologies.
-2. Retrieving articles from these sources using the NewsCatcher API, covering the date range from February 24, 2022, to the present day.
-3. Storing and organizing the collected data by source, country, and date for further analysis.
+1. **Country and Media Outlet Selection**:
+   - We selected the following countries for analysis: United States, Ukraine, United Kingdom, Poland, and Germany.
+   - For each country, we identified the most influential and widely-read media outlets based on their circulation, online presence, and reputation.
+
+2. **API Query Parameters**:
+   - We constructed API queries using the NewsCatcher API to retrieve articles from the selected media outlets in each country.
+   - The queries included the following parameters:
+     - `country`: The country code for each selected country (e.g., US, UA, GB, PL, DE).
+     - `media`: The media outlet names or domains for the selected outlets in each country.
+     - `topic`: Keywords related to the Russia-Ukraine war, such as "Russia," "Ukraine," "war," "conflict," etc.
+     - `from_date` and `to_date`: The date range for article retrieval, spanning from February 24, 2022, to the present day.
+     - `language`: The primary language of the articles (e.g., English, Ukrainian, Polish, German).
+
+3. **Data Retrieval and Storage**:
+   - We executed the API queries and retrieved the news articles from the selected media outlets.
+   - The retrieved data included article titles, URLs, publication dates, content, and other relevant metadata.
+   - We stored the collected data in a structured format (e.g., JSON or CSV) for further processing and analysis.
+
+4. **Data Cleaning and Preprocessing**:
+   - We performed necessary data cleaning and preprocessing steps on the collected articles.
+   - This included removing duplicates, handling missing data, and formatting the text for subsequent analysis.
+
+The data collection process resulted in a diverse and representative sample of news articles related to the Russia-Ukraine war from influential media outlets in the selected countries. This dataset forms the foundation for our sentiment analysis and investigation of media biases and narratives.
 
 ## Sentiment Analysis Approach
 
