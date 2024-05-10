@@ -60,7 +60,7 @@ def save_preprocessed_articles(articles, directory):
         print(f"Saved preprocessed article to {preprocessed_path}")
 
 def main():
-    raw_articles_dir = 'data/raw/articles'
+    raw_articles_dir = 'data/articles'
     preprocessed_dir = 'data/preprocessed_articles'
     articles = load_articles(raw_articles_dir)
     preprocessed_articles = preprocess_articles(articles)
