@@ -7,6 +7,8 @@ from tqdm import tqdm
 import hashlib
 import time
 from newspaper import Article
+from googletrans import Translator
+from langdetect import detect
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -15,17 +17,17 @@ GDELT_API_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
 COUNTRIES = ["US", "UA", "GB", "RU", "BY"]
 MEDIA_OUTLETS = {
     "US": ["washingtonpost.com", "cnn.com", "foxnews.com"],
-    "UA": ["pravda.com.ua", "unian.info", "ukrinform.net", "kyivpost.com"],
+    "UA": ["kyivpost.com", "ukrinform.net", "unian.info"],
     "GB": ["bbc.co.uk", "theguardian.com", "telegraph.co.uk"],
-    "RU": ["rt.com","interfax.ru", "rbth.com"],
-    "BY": ["belta.by", "naviny.by"]
+    "RU": ["themoscowtimes.com", "rt.com", "sputniknews.com"],
+    "BY": ["belarusfeed.com", "eng.belta.by"]
 }
 TOPICS = {
     "US": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression)",
-    "UA": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression)",
+    "UA": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression OR Crimea OR Donbas)",
     "GB": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression)",
-    "RU": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression)",
-    "BY": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression)"
+    "RU": "(Russia OR Ukraine) AND (war OR conflict OR special military operation OR NATO)",
+    "BY": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression OR sanctions)"
 }
 FROM_DATE = (datetime.now() - timedelta(days=30)).strftime("%Y%m%d%H%M%S")
 TO_DATE = datetime.now().strftime("%Y%m%d%H%M%S")
@@ -37,7 +39,13 @@ def fetch_article_content(url, retry_count=3, delay=1):
             article = Article(url)
             article.download()
             article.parse()
-            return article.text
+            content = article.text
+            language = detect(content)
+            if language != 'en':
+                translator = Translator()
+                translation = translator.translate(content, dest='en')
+                content = translation.text
+            return content
         except Exception as e:
             logging.warning(f"Exception fetching article content for {url}: {e}")
         time.sleep(delay)  # Delay before retrying
@@ -67,7 +75,7 @@ def fetch_articles():
                                     "title": article.get("title", ""),
                                     "url": article['url'],
                                     "published_date": article.get("seendate", ""),
-                                    "language": article.get("language", ""),
+                                    "language": "en",
                                     "country": country,
                                     "content": content
                                 })
