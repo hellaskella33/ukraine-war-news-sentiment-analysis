@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project aims to analyze the sentiment and presence of propaganda in news articles related to the Russia-Ukraine war from different countries and media outlets, including the United States, Ukraine, the United Kingdom, Russia, and Belarus. The primary goals are:
+This project aims to analyze the sentiment and presence of propaganda in news articles related to the Russia-Ukraine war from different countries and media outlets, including the United States, Ukraine, the United Kingdom, Poland and Belarus. The primary goals are:
 
 1. Collect news articles from influential media outlets in the selected countries using the GDELT API.
 2. Preprocess the collected articles to clean and prepare the data for analysis.

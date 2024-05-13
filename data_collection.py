@@ -14,20 +14,20 @@ from langdetect import detect
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 GDELT_API_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
-COUNTRIES = ["US", "UA", "GB", "RU", "BY"]
+COUNTRIES = ["US", "UA", "GB", "RU", "BY", "PL"]  # Added Poland (PL)
 MEDIA_OUTLETS = {
     "US": ["washingtonpost.com", "cnn.com", "foxnews.com"],
     "UA": ["kyivpost.com", "ukrinform.net", "unian.info"],
     "GB": ["bbc.co.uk", "theguardian.com", "telegraph.co.uk"],
-    "RU": ["themoscowtimes.com", "rt.com", "sputniknews.com"],
-    "BY": ["belarusfeed.com", "eng.belta.by"]
+    "BY": ["belarusfeed.com", "eng.belta.by"],
+    "PL": ["tvn24.pl", "gazeta.pl", "onet.pl"]  # Added Poland's media outlets
 }
 TOPICS = {
     "US": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression)",
     "UA": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression OR Crimea OR Donbas)",
     "GB": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression)",
-    "RU": "(Russia OR Ukraine) AND (war OR conflict OR special military operation OR NATO)",
-    "BY": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression OR sanctions)"
+    "BY": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression OR sanctions)",
+    "PL": "(Russia OR Ukraine) AND (war OR conflict OR invasion OR aggression OR sanctions)"  # Added Poland's topic
 }
 FROM_DATE = (datetime.now() - timedelta(days=30)).strftime("%Y%m%d%H%M%S")
 TO_DATE = datetime.now().strftime("%Y%m%d%H%M%S")
