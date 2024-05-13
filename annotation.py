@@ -29,11 +29,11 @@ def annotate_articles(articles):
 
         Instructions:
         1. Sentiment towards Ukraine:
-           - Very Negative (1): Expresses strong negative criticism towards Ukraine.
-           - Negative (2): Shows some negative opinions towards Ukraine.
-           - Neutral (3): Neutral or factual reporting without emotional bias.
-           - Positive (4): Generally positive or supportive towards Ukraine.
-           - Very Positive (5): Strongly positive or supportive towards Ukraine.
+           - Very Negative (1): The news is very bad for Ukraine, expressing strong negative criticism or portraying Ukraine in an extremely negative light.
+           - Negative (2): The news is somewhat bad for Ukraine, showing some negative opinions or criticism towards Ukraine.
+           - Neutral (3): The news is neutral or factual, without any positive or negative bias towards Ukraine.
+           - Positive (4): The news is generally good for Ukraine, showing supportive or positive opinions towards Ukraine.
+           - Very Positive (5): The news is very good for Ukraine, expressing strong support or portraying Ukraine in an extremely positive light.
 
         2. Propaganda Detection:
            - Present: Indicates propaganda is used, such as emotional manipulation, biased information, or one-sided reporting.
@@ -47,14 +47,25 @@ def annotate_articles(articles):
            - Political Stability
            - Economic Effects
 
-        Please provide your annotations in the following format:
+        Provide your annotations in the following format:
         Overall Sentiment towards Ukraine: [1-5]
         Propaganda: [Present/Not Present]
         Aspects:
         - Military Support: [Sentiment Score]
         - Humanitarian Aid: [Sentiment Score]
         - Diplomacy: [Sentiment Score]
-        - Other Aspects: [Sentiment Score]
+        - Political Stability: [Sentiment Score]
+        - Economic Effects: [Sentiment Score]
+
+        Example:
+        Overall Sentiment towards Ukraine: 4
+        Propaganda: Not Present
+        Aspects:
+        - Military Support: 3
+        - Humanitarian Aid: 4
+        - Diplomacy: 2
+        - Political Stability: 3
+        - Economic Effects: 4
         """
 
         response = openai.ChatCompletion.create(

@@ -14,7 +14,7 @@ from langdetect import detect
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 GDELT_API_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
-COUNTRIES = ["US", "UA", "GB", "RU", "BY", "PL"]  # Added Poland (PL)
+COUNTRIES = ["US", "UA", "GB", "BY", "PL"]  # Added Poland (PL)
 MEDIA_OUTLETS = {
     "US": ["washingtonpost.com", "cnn.com", "foxnews.com"],
     "UA": ["kyivpost.com", "ukrinform.net", "unian.info"],
