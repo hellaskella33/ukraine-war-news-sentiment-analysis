@@ -113,7 +113,7 @@ def save_annotated_articles(articles, output_file):
 def main():
     """Main function to load, annotate, and save articles."""
     articles_dir = "data/articles"
-    annotated_file = "data/annotated_articles.json"
+    annotated_file = "data/key_annotated_articles.json"
     articles = load_articles(articles_dir)
     annotated_articles = annotate_articles(articles)
     save_annotated_articles(annotated_articles, annotated_file)
